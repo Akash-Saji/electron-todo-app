@@ -17,9 +17,9 @@ A Todo App for daily route
 - Clone the repository using SSH (`https://github.com/Akash-Saji/electron-todo-app.git`)
 - Navigate to the API (`cd electron-todo-app`)
 - Install node dependencies (`npm i`)
-- Run backend node  (`cd todo-frontend`,`nodemon app.js`)
+- Run backend node  (`cd todo-frontend`,`npm nodemon app.js`)
 - The app will be running on port number provided in the env file (`http://localhost:3000`)
-- Run frontend react  (`cd todo-backend`,`npm run build` ,`npm run electron`)
+- Run frontend react  (`cd todo-frontend`,`npm run build` ,`npm run electron`)
 
 ### Steps to build the project.
 
@@ -28,11 +28,11 @@ A Todo App for daily route
 - Clone the repository using SSH (`https://github.com/Akash-Saji/electron-todo-app.git`)
 - Navigate to the API (`cd electron-todo-app`)
 - Install node dependencies (`npm i`)
-- Run backend node  (`cd todo-frontend`,`nodemon app.js`)
+- Run backend node  (`cd todo-backend`,`nodemon app.js`)
 - The app will be running on port number provided in the env file (`http://localhost:3000`)
-- build for windows (`npm run package`)
-- build for mac (`npm run package-mac`)
-- build for linux (`npm run package-linux`)
+- build for windows (`cd todo-frontend`,`npm run package`)
+- build for mac (`cd todo-frontend`,`npm run package-mac`)
+- build for linux (`cd todo-frontend`,`npm run package-linux`)
 
 ### Documentation
 
