@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Todo = require("../model/todomodel");
+const todoController = require('../controllers/todoController');
 
 /**
  * @swagger
@@ -21,6 +21,7 @@ const Todo = require("../model/todomodel");
  *       example:
  *         error: Todo not found
  */
+
 /**
  * @swagger
  * /todo:
@@ -34,14 +35,7 @@ const Todo = require("../model/todomodel");
  *         description: Internal Server Error
  */
 
-router.get('/', async (req, res) => {
-    try {
-        const todoData = await Todo.find();
-        res.json(todoData);
-    } catch (err) {
-        res.status(500).send('Internal Server Error');
-    }
-});
+router.get('/', todoController.getTodos);
 
 /**
  * @swagger
@@ -66,18 +60,7 @@ router.get('/', async (req, res) => {
  *         description: Internal Server Error
  */
 
-router.post('/', async (req, res) => {
-    const todo = new Todo({
-        name: req.body.name,
-    });
-
-    try {
-        const newTodoData = await todo.save();
-        res.status(201).json(newTodoData);
-    } catch (err) {
-        res.status(500).send('Internal Server Error');
-    }
-});
+router.post('/', todoController.createTodo);
 
 /**
  * @swagger
@@ -115,24 +98,7 @@ router.post('/', async (req, res) => {
  *         description: Internal Server Error
  */
 
-router.put('/:id', async (req, res) => {
-    const todoId = req.params.id;
-
-    try {
-        const todo = await Todo.findById(todoId);
-
-        if (!todo) {
-            return res.status(404).json({ error: 'Todo not found' });
-        }
-
-        todo.name = req.body.name;
-        const updatedTodo = await todo.save();
-
-        res.json(updatedTodo);
-    } catch (err) {
-        res.status(500).send('Internal Server Error');
-    }
-});
+router.put('/:id', todoController.updateTodo);
 
 /**
  * @swagger
@@ -164,20 +130,6 @@ router.put('/:id', async (req, res) => {
  *         description: Internal Server Error
  */
 
-router.delete('/:id', async (req, res) => {
-    const todoId = req.params.id;
-
-    try {
-        const result = await Todo.findByIdAndDelete(todoId);
-
-        if (!result) {
-            return res.status(404).json({ error: 'Todo not found' });
-        }
-
-        res.json({ message: 'Todo deleted successfully' });
-    } catch (err) {
-        res.status(500).send('Internal Server Error');
-    }
-});
+router.delete('/:id', todoController.deleteTodo);
 
 module.exports = router;

@@ -2,8 +2,10 @@ const express = require("express");
 const mongoose = require('mongoose');
 const cors = require('cors');
 const app = express();
-const swaggaerdoc = require("swagger-jsdoc");  
-const swaggerui = require("swagger-ui-express");  
+const swaggerJsdoc = require("swagger-jsdoc");
+const swaggerUi = require("swagger-ui-express");
+const Todo = require('./model/todomodel'); 
+const todoroute = require('./routes/todoroute');
 
 app.use(cors());
 app.use(express.json());
@@ -18,28 +20,27 @@ db.once('open', () => {
     console.log('Connected to MongoDB');
 });
 
-const todoroute = require('./routes/todo');
-app.use('/todo', todoroute);
-
 const options = {
     definition: {
-      openapi: "3.0.0",
-      servers: [
-        {
-          url: "http://localhost:3000/",
-        },
-      ],
+        openapi: "3.0.0",
+        servers: [
+            {
+                url: "http://localhost:3000/",
+            },
+        ],
     },
     apis: ["./routes/*.js"],
-  };
-  
-const  swaggaerd = swaggaerdoc(options);
+};
+
+const swaggerDocs = swaggerJsdoc(options);
 app.use(
     "/api/docs",
-    swaggerui.serve,
-    swaggerui.setup(swaggaerd)
-  );
-  
+    swaggerUi.serve,
+    swaggerUi.setup(swaggerDocs)
+);
+
+app.use('/todo', todoroute); 
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on port ${PORT}`);
