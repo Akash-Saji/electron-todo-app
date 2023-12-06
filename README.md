@@ -1,5 +1,5 @@
 # electron-todo-app
-A Todo App for daily route
+A Todo App for daily routine
 
 ### Prerequisites
 
