@@ -1,5 +1,5 @@
 # electron-todo-app
-A Todo App for daily route
+A Todo App for daily routine
 
 ### Prerequisites
 
@@ -17,7 +17,7 @@ A Todo App for daily route
 - Clone the repository using SSH (`https://github.com/Akash-Saji/electron-todo-app.git`)
 - Navigate to the API (`cd electron-todo-app`)
 - Install node dependencies (`npm i`)
-- Run backend node  (`cd todo-frontend`,`npm nodemon app.js`)
+- Run backend node  (`cd todo-backend`,`npm nodemon app.js`)
 - The app will be running on port number provided in the env file (`http://localhost:3000`)
 - Run frontend react  (`cd todo-frontend`,`npm run build` ,`npm run electron`)
 
